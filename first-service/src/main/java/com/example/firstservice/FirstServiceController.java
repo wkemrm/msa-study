@@ -1,5 +1,6 @@
 package com.example.firstservice;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,7 +23,8 @@ public class FirstServiceController {
     }
 
     @GetMapping("/check")
-    public String check() {
-        return "Hi, there. This is a message from first Service.";
+    public String check(HttpServletRequest request) {
+        log.info("Server port={}", request.getServerPort());
+        return String.format("Hi, there. This is a message from first Service on PORT %s", request.getServerPort());
     }
 }
